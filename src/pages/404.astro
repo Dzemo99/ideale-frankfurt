@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import CallButton from '../components/ui/CallButton.astro';
+---
+<BaseLayout
+  title="Seite nicht gefunden — Ideale Gebäudereinigung"
+  description="Die angefragte Seite wurde nicht gefunden."
+  noindex={true}
+>
+  <Header />
+  <main id="main" class="flex flex-1 items-center justify-center">
+    <div class="container-ig py-24 text-center md:py-32">
+      <div class="font-display text-7xl font-semibold text-ig-deep md:text-9xl">404</div>
+      <h1 class="h2-display mt-4 text-ig-ink">Diese Seite konnten wir nicht finden.</h1>
+      <p class="lead mx-auto mt-5 max-w-xl">
+        Sie haben sich vielleicht vertippt — oder die Seite gibt es nicht (mehr).
+      </p>
+      <div class="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
+        <a href="/" class="btn-primary">Zur Startseite</a>
+        <CallButton variant="secondary" />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

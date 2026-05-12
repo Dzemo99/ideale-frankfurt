@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import CallButton from '../components/ui/CallButton.astro';
+import { SITE } from '../data/site';
+---
+<BaseLayout
+  title={`Anfrage erhalten — ${SITE.name}`}
+  description="Vielen Dank für Ihre Anfrage. Wir melden uns innerhalb eines Werktages bei Ihnen."
+  noindex={true}
+>
+  <Header />
+  <main id="main" class="flex flex-1 items-center justify-center bg-ig-fog">
+    <div class="container-ig py-24 text-center md:py-32">
+      <div class="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full bg-ig-success/10 text-ig-success">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="20 6 9 17 4 12" />
+        </svg>
+      </div>
+      <h1 class="h1-display text-ig-ink">Vielen Dank!</h1>
+      <p class="lead mx-auto mt-6 max-w-xl">
+        Ihre Anfrage ist bei uns angekommen. Wir melden uns innerhalb eines Werktages telefonisch oder per E-Mail bei Ihnen zurück.
+      </p>
+
+      <div class="mt-10 inline-flex flex-col items-center gap-2 rounded-lg border border-ig-line bg-white p-6 text-left md:flex-row md:gap-6">
+        <div>
+          <div class="text-xs uppercase tracking-wider text-ig-ink/50">Sie möchten direkt sprechen?</div>
+          <div class="font-display text-2xl font-semibold text-ig-ink">Rufen Sie uns an.</div>
+        </div>
+        <CallButton size="lg" />
+      </div>
+
+      <p class="mt-12">
+        <a href="/" class="text-sm font-semibold text-ig-deep underline hover:text-ig-ink">← Zurück zur Startseite</a>
+      </p>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { trackFormSubmit } from '../lib/tracking';
+  trackFormSubmit();
+
+  // Enhanced Conversions — Vorbereitung
+  // TODO: Dzemo — sobald Enhanced Conversions in Google Ads aktiviert sind,
+  // kann hier gehashte User-Data via URL-Param an gtag übergeben werden.
+  // Beispiel:
+  // const params = new URLSearchParams(window.location.search);
+  // const email = params.get('email');
+  // if (email && typeof window.gtag === 'function') {
+  //   window.gtag('event', 'conversion', {
+  //     send_to: import.meta.env.PUBLIC_GOOGLE_ADS_CONV_FORM,
+  //     user_data: { email_address: email }
+  //   });
+  // }
+</script>

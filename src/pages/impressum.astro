@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { SITE } from '../data/site';
+---
+<BaseLayout
+  title={`Impressum — ${SITE.name}`}
+  description="Impressum nach § 5 TMG"
+>
+  <Header />
+  <main id="main" class="bg-white">
+    <article class="container-ig prose-ig py-16 md:py-24 max-w-3xl">
+      <h1 class="h1-display text-ig-ink">Impressum</h1>
+
+      <h2 class="h2-display mt-12 text-ig-deep">Angaben gemäß § 5 TMG</h2>
+      <address class="mt-4 not-italic text-lg leading-relaxed text-ig-ink/85">
+        {SITE.legalName}<br />
+        {SITE.address.street}<br />
+        {SITE.address.zip} {SITE.address.city}
+      </address>
+
+      <h3 class="mt-10 font-display text-xl font-semibold text-ig-ink">Kontakt</h3>
+      <ul class="mt-3 space-y-1 text-ig-ink/85">
+        <li>Telefon: <a href={SITE.phoneLink} class="text-ig-deep hover:underline">{SITE.phoneDisplay}</a></li>
+        <li>E-Mail: <a href={`mailto:${SITE.email}`} class="text-ig-deep hover:underline">{SITE.email}</a></li>
+      </ul>
+
+      <h3 class="mt-10 font-display text-xl font-semibold text-ig-ink">Umsatzsteuer-Identifikationsnummer</h3>
+      <p class="mt-3 text-ig-ink/85">
+        gemäß § 27a Umsatzsteuergesetz:<br />
+        <span class="font-mono">{SITE.ustId}</span>
+      </p>
+
+      <h3 class="mt-10 font-display text-xl font-semibold text-ig-ink">Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+      <p class="mt-3 text-ig-ink/85">
+        {SITE.founder}<br />
+        Anschrift wie oben
+      </p>
+
+      <h3 class="mt-10 font-display text-xl font-semibold text-ig-ink">Berufshaftpflichtversicherung</h3>
+      <p class="mt-3 text-ig-ink/85">
+        {SITE.insurance}<br />
+        {/* TODO: Dzemo — Versicherer-Name und Geltungsbereich ergänzen */}
+        <span class="text-ig-ink/60 italic">Versicherer und räumlicher Geltungsbereich: wird nachgereicht</span>
+      </p>
+
+      <h2 class="h2-display mt-12 text-ig-deep">Streitschlichtung</h2>
+      <p class="mt-4 text-ig-ink/85">
+        Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+        <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" class="text-ig-deep hover:underline">
+          https://ec.europa.eu/consumers/odr
+        </a>.<br />
+        Unsere E-Mail-Adresse finden Sie oben im Impressum.
+      </p>
+      <p class="mt-4 text-ig-ink/85">
+        Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucher­schlichtungsstelle teilzunehmen.
+      </p>
+
+      <h2 class="h2-display mt-12 text-ig-deep">Haftung für Inhalte</h2>
+      <p class="mt-4 text-ig-ink/85">
+        Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich.
+        Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.
+        Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.
+      </p>
+
+      <h2 class="h2-display mt-12 text-ig-deep">Urheberrecht</h2>
+      <p class="mt-4 text-ig-ink/85">
+        Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht.
+        Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes
+        bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
+      </p>
+    </article>
+  </main>
+  <Footer />
+</BaseLayout>
