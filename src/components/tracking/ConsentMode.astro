@@ -1,0 +1,38 @@
+---
+// Google Consent Mode v2 default state.
+// MUST be rendered BEFORE GTM script so default = denied is applied first.
+// CookieBanner.astro later updates these to 'granted' when user opts in.
+---
+<script is:inline>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', true);
+
+  // If user already consented earlier, apply stored decision before GTM loads.
+  try {
+    var stored = localStorage.getItem('ig_consent');
+    if (stored) {
+      var c = JSON.parse(stored);
+      if (c && c.timestamp && (Date.now() - c.timestamp) < 1000 * 60 * 60 * 24 * 365) {
+        gtag('consent', 'update', {
+          'ad_storage': c.marketing ? 'granted' : 'denied',
+          'ad_user_data': c.marketing ? 'granted' : 'denied',
+          'ad_personalization': c.marketing ? 'granted' : 'denied',
+          'analytics_storage': c.analytics ? 'granted' : 'denied'
+        });
+      }
+    }
+  } catch (e) { /* localStorage blocked → stay on defaults */ }
+</script>

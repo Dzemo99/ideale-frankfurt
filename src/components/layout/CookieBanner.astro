@@ -1,0 +1,160 @@
+---
+// Minimaler eigener Cookie-Banner, kein Drittanbieter.
+// State wird in localStorage 'ig_consent' für 12 Monate gespeichert.
+// Aktualisiert Consent Mode via gtag('consent', 'update', ...).
+---
+<div
+  id="cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-50 hidden border-t border-ig-line bg-white/95 shadow-[0_-8px_30px_rgba(11,27,43,0.08)] backdrop-blur"
+  role="region"
+  aria-label="Cookie-Hinweis"
+>
+  <div class="container-ig flex flex-col gap-4 py-5 md:flex-row md:items-center md:justify-between md:gap-6 md:py-6">
+    <div class="flex-1 text-sm leading-relaxed text-ig-ink/80">
+      <strong class="text-ig-ink">Wir nutzen Cookies.</strong> Notwendige Cookies sind immer aktiv.
+      Mit Ihrer Einwilligung verwenden wir zusätzlich Analyse- und Marketing-Cookies (Google Analytics, Google Ads),
+      um unsere Anzeigen und diese Website zu verbessern. Mehr in der
+      <a href="/datenschutz" class="underline hover:text-ig-deep">Datenschutzerklärung</a>.
+    </div>
+    <div class="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
+      <button type="button" data-consent-action="settings" class="text-sm font-semibold text-ig-ink/80 underline hover:text-ig-deep">
+        Einstellungen
+      </button>
+      <button type="button" data-consent-action="reject" class="btn-secondary text-sm">
+        Nur notwendige
+      </button>
+      <button type="button" data-consent-action="accept" class="btn-primary text-sm">
+        Alle akzeptieren
+      </button>
+    </div>
+  </div>
+</div>
+
+<div
+  id="cookie-modal"
+  class="fixed inset-0 z-[60] hidden items-center justify-center bg-ig-ink/60 px-4 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cookie-modal-title"
+>
+  <div class="w-full max-w-lg rounded-lg bg-white p-6 shadow-2xl md:p-8">
+    <h2 id="cookie-modal-title" class="font-display text-2xl font-semibold text-ig-ink">Cookie-Einstellungen</h2>
+    <p class="mt-2 text-sm text-ig-ink/70">
+      Entscheiden Sie selbst, welche Kategorien Sie zulassen möchten. Notwendige Cookies sind für den Betrieb der Seite erforderlich.
+    </p>
+    <div class="mt-6 space-y-4">
+      <label class="flex items-start justify-between gap-4 rounded-md-tight border border-ig-line bg-ig-fog/40 p-4">
+        <span>
+          <span class="block font-semibold text-ig-ink">Notwendige</span>
+          <span class="block text-sm text-ig-ink/70">Erforderlich für Grundfunktionen. Nicht deaktivierbar.</span>
+        </span>
+        <input type="checkbox" checked disabled class="mt-1 h-5 w-5 rounded border-ig-line text-ig-deep" />
+      </label>
+      <label class="flex items-start justify-between gap-4 rounded-md-tight border border-ig-line p-4">
+        <span>
+          <span class="block font-semibold text-ig-ink">Analyse</span>
+          <span class="block text-sm text-ig-ink/70">Google Analytics 4 — anonyme Nutzungsstatistiken.</span>
+        </span>
+        <input id="consent-analytics" type="checkbox" class="mt-1 h-5 w-5 rounded border-ig-line text-ig-deep focus:ring-ig-deep" />
+      </label>
+      <label class="flex items-start justify-between gap-4 rounded-md-tight border border-ig-line p-4">
+        <span>
+          <span class="block font-semibold text-ig-ink">Marketing</span>
+          <span class="block text-sm text-ig-ink/70">Google Ads — Conversion-Tracking & Remarketing.</span>
+        </span>
+        <input id="consent-marketing" type="checkbox" class="mt-1 h-5 w-5 rounded border-ig-line text-ig-deep focus:ring-ig-deep" />
+      </label>
+    </div>
+    <div class="mt-6 flex flex-col gap-2 sm:flex-row sm:justify-end sm:gap-3">
+      <button type="button" data-consent-action="reject" class="btn-secondary text-sm">Nur notwendige</button>
+      <button type="button" data-consent-action="save" class="btn-primary text-sm">Auswahl speichern</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = 'ig_consent';
+  const banner = document.getElementById('cookie-banner');
+  const modal = document.getElementById('cookie-modal');
+  const analyticsCb = document.getElementById('consent-analytics') as HTMLInputElement | null;
+  const marketingCb = document.getElementById('consent-marketing') as HTMLInputElement | null;
+
+  type Consent = { analytics: boolean; marketing: boolean; timestamp: number };
+
+  function load(): Consent | null {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      const c = JSON.parse(raw);
+      if (c && typeof c.timestamp === 'number' && Date.now() - c.timestamp < 1000 * 60 * 60 * 24 * 365) {
+        return c;
+      }
+      return null;
+    } catch {
+      return null;
+    }
+  }
+
+  function save(c: Consent) {
+    try {
+      localStorage.setItem(KEY, JSON.stringify(c));
+    } catch { /* ignore */ }
+    applyConsent(c);
+    hideAll();
+  }
+
+  function applyConsent(c: Consent) {
+    const w = window as any;
+    if (typeof w.gtag === 'function') {
+      w.gtag('consent', 'update', {
+        ad_storage: c.marketing ? 'granted' : 'denied',
+        ad_user_data: c.marketing ? 'granted' : 'denied',
+        ad_personalization: c.marketing ? 'granted' : 'denied',
+        analytics_storage: c.analytics ? 'granted' : 'denied',
+      });
+    }
+  }
+
+  function showBanner() {
+    banner?.classList.remove('hidden');
+  }
+  function hideAll() {
+    banner?.classList.add('hidden');
+    modal?.classList.remove('flex');
+    modal?.classList.add('hidden');
+  }
+  function openModal() {
+    const existing = load();
+    if (analyticsCb) analyticsCb.checked = existing?.analytics ?? false;
+    if (marketingCb) marketingCb.checked = existing?.marketing ?? false;
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+  }
+
+  document.querySelectorAll('[data-consent-action]').forEach((el) => {
+    el.addEventListener('click', () => {
+      const action = el.getAttribute('data-consent-action');
+      const now = Date.now();
+      if (action === 'accept') save({ analytics: true, marketing: true, timestamp: now });
+      else if (action === 'reject') save({ analytics: false, marketing: false, timestamp: now });
+      else if (action === 'settings') openModal();
+      else if (action === 'save') save({
+        analytics: analyticsCb?.checked ?? false,
+        marketing: marketingCb?.checked ?? false,
+        timestamp: now,
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-open-consent]').forEach((el) => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  // Initial check: show banner if no decision yet
+  if (!load()) {
+    requestAnimationFrame(() => showBanner());
+  }
+</script>

@@ -1,0 +1,17 @@
+---
+import type { Service } from '../../data/services';
+import ServiceIcon from './ServiceIcon.astro';
+
+export interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+<article class="group relative flex h-full flex-col rounded-lg border border-ig-line bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover md:p-7">
+  <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-md-tight bg-ig-fog text-ig-deep transition-colors group-hover:bg-ig-deep group-hover:text-white">
+    <ServiceIcon icon={service.icon} />
+  </div>
+  <h3 class="h3-display mb-2 text-ig-ink">{service.title}</h3>
+  <p class="text-sm leading-relaxed text-ig-ink/70">{service.short}</p>
+</article>
