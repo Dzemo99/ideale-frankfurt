@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="ogBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0B1B2B"/>
+      <stop offset="100%" stop-color="#15324D"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <g transform="translate(80,90)">
+    <rect width="56" height="56" rx="12" fill="#0B1B2B" stroke="#C8A24B" stroke-width="2"/>
+    <text x="28" y="38" text-anchor="middle" font-family="Georgia, serif" font-size="28" fill="#C8A24B" font-weight="700">I</text>
+  </g>
+  <text x="80" y="240" font-family="Georgia, serif" font-size="36" fill="rgba(200,162,75,0.9)" font-weight="500">Ideale Gebäudereinigung</text>
+  <text x="80" y="340" font-family="Georgia, serif" font-size="72" fill="white" font-weight="600">Gebäudereinigung</text>
+  <text x="80" y="425" font-family="Georgia, serif" font-size="72" fill="white" font-weight="600">in <tspan fill="#C8A24B">Frankfurt.</tspan></text>
+  <text x="80" y="510" font-family="sans-serif" font-size="22" fill="rgba(255,255,255,0.7)">Versichert · Festgepreist · Eigenes Team</text>
+  <text x="80" y="555" font-family="sans-serif" font-size="20" fill="rgba(255,255,255,0.5)">frankfurt.ideale-gebaeudereinigung.de</text>
+</svg>
