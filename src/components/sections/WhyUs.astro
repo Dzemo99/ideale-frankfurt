@@ -1,0 +1,59 @@
+---
+const points = [
+  {
+    title: 'Eigenes, festangestelltes Team',
+    text: 'Keine Subunternehmer, keine wechselnden Gesichter. Dieselben Menschen, die Ihre Räume kennen — Woche für Woche.',
+  },
+  {
+    title: 'Betriebshaftpflicht bis 5 Mio. EUR',
+    text: 'Falls doch einmal etwas passiert: Sie sind voll abgesichert. Nachweis legen wir Ihnen vor Auftragsbeginn vor.',
+  },
+  {
+    title: 'Festpreise — schriftlich',
+    text: 'Sie wissen vorher, was es kostet. Kein Aufschlag für Anfahrt, keine Stundenaufschläge, keine Überraschungen.',
+  },
+  {
+    title: 'Familiengeführt seit Jahren',
+    text: 'Inhabergeführt von Jamal Jaafar. Sie sprechen direkt mit dem, der die Verantwortung trägt — kurze Wege, klare Zusagen.',
+  },
+];
+---
+<section class="section-pad bg-ig-fog">
+  <div class="container-ig">
+    <div class="grid items-start gap-14 md:grid-cols-2 md:gap-20">
+      <div class="md:sticky md:top-28">
+        <span class="eyebrow">Warum Ideale</span>
+        <h2 class="h2-display mt-4 text-ig-ink">
+          Vier Gründe, warum Sie<br />
+          mit uns ruhig schlafen.
+        </h2>
+        <p class="lead mt-5">
+          Wir sind nicht der billigste Anbieter im Markt. Wir sind der, mit dem Sie aufhören, sich Sorgen um Reinigung zu machen.
+        </p>
+        <div class="mt-8 aspect-[4/3] overflow-hidden rounded-lg bg-ig-deep shadow-card">
+          <img
+            src="/images/team-1.svg"
+            alt="Team von Ideale Gebäudereinigung bei der Arbeit"
+            width="600"
+            height="450"
+            loading="lazy"
+            decoding="async"
+            class="h-full w-full object-cover"
+          />
+        </div>
+      </div>
+
+      <ol class="space-y-8">
+        {points.map((p, i) => (
+          <li class="relative pl-14">
+            <span class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-ig-ink font-display text-base font-semibold text-white">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <h3 class="font-display text-xl font-semibold text-ig-ink md:text-2xl">{p.title}</h3>
+            <p class="mt-2 text-ig-ink/75">{p.text}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

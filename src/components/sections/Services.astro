@@ -1,0 +1,24 @@
+---
+import { SERVICES } from '../../data/services';
+import ServiceCard from '../ui/ServiceCard.astro';
+---
+<section id="leistungen" class="section-pad">
+  <div class="container-ig">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="eyebrow">Unsere Leistungen</span>
+      <h2 class="h2-display mt-4 text-ig-ink">
+        Alles, was Ihre Räume sauber hält.
+      </h2>
+      <p class="lead mt-5">
+        Vom Schaufenster bis zur Industriehalle, vom Treppenhaus bis zum Wintergarten.
+        Sie finden Ihren Service nicht? <a href={'#kontakt'} class="underline decoration-ig-accent decoration-2 underline-offset-4 hover:text-ig-deep">Rufen Sie uns an</a> — wir reinigen mehr als hier aufgelistet.
+      </p>
+    </div>
+
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      {SERVICES.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,28 @@
+---
+const steps = [
+  { num: 1, title: 'Anfrage', text: 'Per Telefon, WhatsApp oder Formular. Wir melden uns am selben Tag zurück.' },
+  { num: 2, title: 'Vor-Ort-Gespräch', text: 'Kostenlos und unverbindlich. Wir schauen uns das Objekt an und klären Ihre Anforderungen.' },
+  { num: 3, title: 'Festpreis-Angebot', text: 'Schriftlich, transparent, ohne versteckte Kosten. In der Regel innerhalb von 48 Stunden.' },
+  { num: 4, title: 'Saubere Umsetzung', text: 'Termingerecht, gewissenhaft, dokumentiert. Mit demselben Team — Woche für Woche.' },
+];
+---
+<section class="section-pad">
+  <div class="container-ig">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="eyebrow">So läuft's ab</span>
+      <h2 class="h2-display mt-4 text-ig-ink">
+        Vier Schritte zur sauberen Lösung.
+      </h2>
+    </div>
+
+    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+      {steps.map((step) => (
+        <div class="relative rounded-lg border border-ig-line bg-white p-6 md:p-7">
+          <div class="font-display text-5xl font-semibold text-ig-accent">{String(step.num).padStart(2, '0')}</div>
+          <h3 class="mt-4 font-display text-xl font-semibold text-ig-ink">{step.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ig-ink/70">{step.text}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

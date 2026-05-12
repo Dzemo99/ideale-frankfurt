@@ -1,0 +1,33 @@
+---
+// Unsichtbare Marker-Divs an 25/50/75/100% Scrolltiefe.
+// IntersectionObserver triggert je einmal trackScrollDepth.
+---
+<div aria-hidden="true" class="pointer-events-none fixed inset-0 -z-50">
+  <div data-scroll-marker="25" class="absolute left-0 right-0" style="top:25vh"></div>
+  <div data-scroll-marker="50" class="absolute left-0 right-0" style="top:50vh"></div>
+  <div data-scroll-marker="75" class="absolute left-0 right-0" style="top:75vh"></div>
+  <div data-scroll-marker="100" class="absolute left-0 right-0" style="top:99vh"></div>
+</div>
+
+<script>
+  const fired = new Set<number>();
+  const markers = document.querySelectorAll<HTMLElement>('[data-scroll-marker]');
+
+  const checkDepth = () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (docHeight <= 0) return;
+    const pct = Math.round((window.scrollY / docHeight) * 100);
+    const thresholds: Array<25 | 50 | 75 | 100> = [25, 50, 75, 100];
+    thresholds.forEach((t) => {
+      if (pct >= t && !fired.has(t)) {
+        fired.add(t);
+        import('../../lib/tracking').then((m) => m.trackScrollDepth(t));
+      }
+    });
+  };
+
+  if (markers.length) {
+    window.addEventListener('scroll', checkDepth, { passive: true });
+    checkDepth();
+  }
+</script>

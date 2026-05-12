@@ -1,0 +1,72 @@
+---
+import CallButton from '../ui/CallButton.astro';
+---
+<section class="relative overflow-hidden bg-ig-fog">
+  <div class="absolute inset-0 -z-10 opacity-[0.05]">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+          <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#0B1B2B" stroke-width="0.5" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)" />
+    </svg>
+  </div>
+
+  <div class="container-ig grid items-center gap-12 pt-16 pb-20 md:grid-cols-2 md:gap-16 md:pt-24 md:pb-28 lg:pt-28 lg:pb-32">
+    <div class="animate-fade-up">
+      <span class="eyebrow">Frankfurt · Rhein-Main</span>
+      <h1 class="h1-display mt-4 text-balance text-ig-ink">
+        Gebäudereinigung in Frankfurt —
+        <span class="text-ig-deep">verlässlich,</span>
+        <span class="text-ig-deep">versichert,</span>
+        <span class="text-ig-deep">festgepreist.</span>
+      </h1>
+      <p class="lead mt-6 max-w-xl">
+        Professionelle Reinigung für Unternehmen, Hausverwaltungen und Privatkunden im Großraum Frankfurt.
+        Eigenes Team, klare Festpreise, 5 Mio. EUR Betriebshaftpflicht.
+      </p>
+
+      <div class="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
+        <CallButton size="lg" />
+        <a href="#kontakt" class="btn-secondary px-8 py-4 text-lg">
+          Anfrage senden
+        </a>
+      </div>
+
+      <ul class="mt-10 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-ig-ink/70">
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-ig-accent"></span>
+          5 Mio. EUR versichert
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-ig-accent"></span>
+          Etablierte Familienfirma
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1.5 w-1.5 rounded-full bg-ig-accent"></span>
+          Festpreise statt Stundenabrechnung
+        </li>
+      </ul>
+    </div>
+
+    <div class="animate-fade-up [animation-delay:120ms]">
+      <div class="relative aspect-[4/5] overflow-hidden rounded-lg bg-ig-deep shadow-card-hover">
+        <img
+          src="/images/hero-placeholder.svg"
+          alt="Frankfurter Hochhaus mit gereinigter Glasfassade"
+          width="640"
+          height="800"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+          class="h-full w-full object-cover"
+        />
+        <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ig-ink/80 to-transparent p-6 text-white">
+          <div class="text-xs uppercase tracking-widest text-ig-accent">Seit Jahren etabliert</div>
+          <div class="mt-1 font-display text-xl font-semibold">Jetzt in Frankfurt für Sie da.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,142 @@
+---
+import { SITE } from '../data/site';
+import { FAQ } from '../data/faq';
+import { SERVICES } from '../data/services';
+import ConsentMode from '../components/tracking/ConsentMode.astro';
+import GTM from '../components/tracking/GTM.astro';
+import GTMNoScript from '../components/tracking/GTMNoScript.astro';
+import CookieBanner from '../components/layout/CookieBanner.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  includeSchema?: boolean;
+}
+
+const {
+  title = `Gebäudereinigung Frankfurt | ${SITE.name} — versichert, festgepreist`,
+  description = SITE.description,
+  image = '/og-image.svg',
+  noindex = false,
+  includeSchema = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE.url).toString();
+const ogImage = new URL(image, SITE.url).toString();
+
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CleaningService',
+  '@id': `${SITE.url}/#business`,
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  telephone: SITE.phone,
+  email: SITE.email,
+  founder: { '@type': 'Person', name: SITE.founder },
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE.address.street,
+    postalCode: SITE.address.zip,
+    addressLocality: SITE.address.city,
+    addressCountry: SITE.address.country,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Frankfurt am Main' },
+    { '@type': 'City', name: 'Offenbach am Main' },
+    { '@type': 'City', name: 'Mainz' },
+    { '@type': 'City', name: 'Wiesbaden' },
+    { '@type': 'City', name: 'Darmstadt' },
+    { '@type': 'AdministrativeArea', name: 'Rhein-Main-Gebiet' },
+  ],
+  priceRange: '€€',
+  openingHoursSpecification: [
+    {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '07:00',
+      closes: '18:00',
+    },
+  ],
+  vatID: SITE.ustId,
+};
+
+const serviceSchemas = SERVICES.slice(0, 5).map((s) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: s.title,
+  name: `${s.title} in Frankfurt am Main`,
+  description: s.short,
+  provider: { '@id': `${SITE.url}/#business` },
+  areaServed: { '@type': 'City', name: 'Frankfurt am Main' },
+}));
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+---
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="generator" content={Astro.generator} />
+
+    <ConsentMode />
+    <GTM />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+    <link rel="alternate" hreflang="de" href={canonical} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <meta name="theme-color" content="#0B1B2B" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {includeSchema && (
+      <>
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+        {serviceSchemas.map((schema) => (
+          <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+        ))}
+        <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+      </>
+    )}
+  </head>
+  <body class="flex min-h-screen flex-col">
+    <GTMNoScript />
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md-tight focus:bg-ig-ink focus:px-4 focus:py-2 focus:text-white"
+    >
+      Zum Hauptinhalt springen
+    </a>
+    <slot />
+    <CookieBanner />
+  </body>
+</html>

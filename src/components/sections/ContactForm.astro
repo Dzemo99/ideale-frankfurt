@@ -1,0 +1,109 @@
+---
+import { SITE } from '../../data/site';
+import { FORM_SERVICE_OPTIONS } from '../../data/services';
+import CallButton from '../ui/CallButton.astro';
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+
+// Netlify Forms: form muss in einem static-HTML build vorhanden sein —
+// das ist hier der Fall (Astro generiert statisches HTML).
+// Email-Notification nach erstem Submit im Netlify-Dashboard einrichten:
+// Forms → frankfurt-anfrage → Settings → Form notifications → Email
+// → info@ideale-gebaeudereinigung.de
+---
+<section id="kontakt" class="section-pad bg-ig-fog">
+  <div class="container-ig grid items-start gap-12 lg:grid-cols-5 lg:gap-16">
+    <div class="lg:col-span-2 lg:sticky lg:top-28">
+      <span class="eyebrow">Anfrage</span>
+      <h2 class="h2-display mt-4 text-ig-ink">
+        Sprechen Sie uns an.
+      </h2>
+      <p class="lead mt-5">
+        Schreiben, anrufen, WhatsApp — wie es Ihnen passt.
+        Sie erhalten innerhalb eines Werktages eine Rückmeldung.
+      </p>
+
+      <div class="mt-8 space-y-3">
+        <CallButton size="lg" class="w-full sm:w-auto" />
+        <WhatsAppButton size="lg" class="w-full sm:w-auto" />
+      </div>
+
+      <dl class="mt-10 space-y-4 text-sm">
+        <div>
+          <dt class="text-xs uppercase tracking-wider text-ig-ink/50">E-Mail</dt>
+          <dd><a href={`mailto:${SITE.email}`} class="text-ig-ink hover:text-ig-deep">{SITE.email}</a></dd>
+        </div>
+        <div>
+          <dt class="text-xs uppercase tracking-wider text-ig-ink/50">Unsere Region</dt>
+          <dd class="text-ig-ink/80">{SITE.serviceAreaNote}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <form
+      name="frankfurt-anfrage"
+      method="POST"
+      data-netlify="true"
+      data-netlify-honeypot="bot-field"
+      action="/danke"
+      class="lg:col-span-3 rounded-lg border border-ig-line bg-white p-6 shadow-card md:p-8"
+    >
+      <input type="hidden" name="form-name" value="frankfurt-anfrage" />
+      <input type="hidden" name="source" value="frankfurt-landingpage" />
+      <p class="hidden">
+        <label>Nicht ausfüllen: <input name="bot-field" /></label>
+      </p>
+
+      <div class="grid gap-5 md:grid-cols-2">
+        <label class="block">
+          <span class="block text-sm font-semibold text-ig-ink">Name <span class="text-ig-danger">*</span></span>
+          <input type="text" name="name" required autocomplete="name" class="mt-1.5 w-full rounded-md-tight border-ig-line bg-white py-3.5 px-4 text-ig-ink focus:border-ig-deep focus:ring-ig-deep" />
+        </label>
+
+        <label class="block">
+          <span class="block text-sm font-semibold text-ig-ink">E-Mail <span class="text-ig-danger">*</span></span>
+          <input type="email" name="email" required autocomplete="email" class="mt-1.5 w-full rounded-md-tight border-ig-line bg-white py-3.5 px-4 text-ig-ink focus:border-ig-deep focus:ring-ig-deep" />
+        </label>
+
+        <label class="block">
+          <span class="block text-sm font-semibold text-ig-ink">Telefon <span class="text-ig-danger">*</span></span>
+          <input type="tel" name="telefon" required autocomplete="tel" inputmode="tel" class="mt-1.5 w-full rounded-md-tight border-ig-line bg-white py-3.5 px-4 text-ig-ink focus:border-ig-deep focus:ring-ig-deep" />
+        </label>
+
+        <label class="block">
+          <span class="block text-sm font-semibold text-ig-ink">Art der Anfrage</span>
+          <select name="leistung" class="mt-1.5 w-full rounded-md-tight border-ig-line bg-white py-3.5 px-4 text-ig-ink focus:border-ig-deep focus:ring-ig-deep">
+            <option value="">Bitte wählen…</option>
+            {FORM_SERVICE_OPTIONS.map((opt) => (
+              <option value={opt}>{opt}</option>
+            ))}
+          </select>
+        </label>
+
+        <label class="block md:col-span-2">
+          <span class="block text-sm font-semibold text-ig-ink">Objekt-Größe in m² <span class="text-ig-ink/50">(optional)</span></span>
+          <input type="number" name="groesse" min="0" inputmode="numeric" class="mt-1.5 w-full rounded-md-tight border-ig-line bg-white py-3.5 px-4 text-ig-ink focus:border-ig-deep focus:ring-ig-deep" />
+        </label>
+
+        <label class="block md:col-span-2">
+          <span class="block text-sm font-semibold text-ig-ink">Nachricht <span class="text-ig-ink/50">(optional)</span></span>
+          <textarea name="nachricht" rows="4" class="mt-1.5 w-full rounded-md-tight border-ig-line bg-white py-3.5 px-4 text-ig-ink focus:border-ig-deep focus:ring-ig-deep"></textarea>
+        </label>
+      </div>
+
+      <label class="mt-5 flex items-start gap-3 text-sm text-ig-ink/75">
+        <input type="checkbox" required name="datenschutz" class="mt-1 h-4 w-4 rounded border-ig-line text-ig-deep focus:ring-ig-deep" />
+        <span>
+          Ich habe die <a href="/datenschutz" class="underline hover:text-ig-deep">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zur Bearbeitung meiner Anfrage zu.
+        </span>
+      </label>
+
+      <button type="submit" class="btn-primary mt-6 w-full text-lg py-4 md:w-auto md:px-12">
+        Anfrage senden
+      </button>
+
+      <p class="mt-4 text-xs text-ig-ink/60">
+        Spamschutz: Ihre Daten werden ausschließlich zur Bearbeitung Ihrer Anfrage verwendet. Keine Weitergabe an Dritte.
+      </p>
+    </form>
+  </div>
+</section>

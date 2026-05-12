@@ -1,0 +1,20 @@
+---
+import CallButton from '../ui/CallButton.astro';
+import WhatsAppButton from '../ui/WhatsAppButton.astro';
+---
+<section class="bg-ig-ink text-white">
+  <div class="container-ig py-20 text-center md:py-28">
+    <span class="eyebrow text-ig-accent">Bereit?</span>
+    <h2 class="h2-display mt-4 text-balance text-white">
+      Bereit für saubere Räume in Frankfurt?
+    </h2>
+    <p class="lead mt-5 mx-auto max-w-2xl text-white/80">
+      Ein Anruf, ein kostenloses Vor-Ort-Gespräch, ein Festpreis. Mehr braucht es nicht.
+    </p>
+
+    <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+      <CallButton size="lg" class="bg-white !text-ig-ink hover:!bg-ig-fog hover:!text-ig-ink" />
+      <WhatsAppButton size="lg" />
+    </div>
+  </div>
+</section>

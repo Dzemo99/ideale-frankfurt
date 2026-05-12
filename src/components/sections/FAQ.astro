@@ -1,0 +1,28 @@
+---
+import { FAQ } from '../../data/faq';
+---
+<section id="faq" class="section-pad">
+  <div class="container-ig">
+    <div class="mx-auto max-w-2xl text-center">
+      <span class="eyebrow">Häufige Fragen</span>
+      <h2 class="h2-display mt-4 text-ig-ink">Antworten, bevor Sie fragen.</h2>
+    </div>
+
+    <div class="mx-auto mt-12 max-w-3xl space-y-3">
+      {FAQ.map((item) => (
+        <details class="group rounded-lg border border-ig-line bg-white p-5 transition-colors hover:border-ig-deep/30 md:p-6">
+          <summary class="flex cursor-pointer items-center justify-between gap-4 font-display text-lg font-semibold text-ig-ink marker:hidden [&::-webkit-details-marker]:hidden">
+            <span>{item.question}</span>
+            <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ig-line text-ig-deep transition-transform group-open:rotate-45" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <line x1="12" y1="5" x2="12" y2="19" />
+                <line x1="5" y1="12" x2="19" y2="12" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-4 leading-relaxed text-ig-ink/75">{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
