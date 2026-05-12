@@ -1,0 +1,96 @@
+@import '@fontsource-variable/fraunces/wght.css';
+@import '@fontsource-variable/plus-jakarta-sans/wght.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --ig-ink: #0b1b2b;
+    --ig-deep: #15324d;
+    --ig-accent: #c8a24b;
+    --ig-fog: #f5f2ec;
+    --ig-line: #e5dfd3;
+    --ig-success: #2f855a;
+    --ig-danger: #c53030;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white font-sans text-ig-ink antialiased;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+    font-weight: 600;
+  }
+
+  ::selection {
+    @apply bg-ig-deep text-white;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ig-deep ring-offset-2 ring-offset-white;
+  }
+}
+
+@layer components {
+  .container-ig {
+    @apply mx-auto w-full max-w-container px-6 md:px-8;
+  }
+
+  .section-pad {
+    @apply py-20 md:py-28;
+  }
+
+  .btn-base {
+    @apply inline-flex items-center justify-center gap-2 rounded-md-tight px-6 py-3.5 font-semibold transition-all duration-200 ease-out;
+  }
+
+  .btn-primary {
+    @apply btn-base bg-ig-ink text-white hover:bg-ig-deep hover:scale-[1.02] active:scale-[0.99];
+  }
+
+  .btn-secondary {
+    @apply btn-base border-2 border-ig-ink text-ig-ink hover:bg-ig-ink hover:text-white;
+  }
+
+  .btn-whatsapp {
+    @apply btn-base bg-[#25D366] text-white hover:bg-[#1FB855] hover:scale-[1.02] active:scale-[0.99];
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-[0.18em] text-ig-deep;
+  }
+
+  .h1-display {
+    @apply font-display text-display-sm md:text-display-md lg:text-display-lg;
+  }
+
+  .h2-display {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  .h3-display {
+    @apply font-display text-xl md:text-2xl;
+  }
+
+  .lead {
+    @apply text-lg md:text-xl text-ig-ink/80 leading-relaxed;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
