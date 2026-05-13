@@ -5,6 +5,7 @@ import Footer from '../components/layout/Footer.astro';
 import Hero from '../components/sections/Hero.astro';
 import TrustBar from '../components/sections/TrustBar.astro';
 import Services from '../components/sections/Services.astro';
+import Rechner from '../components/sections/Rechner.astro';
 import WhyUs from '../components/sections/WhyUs.astro';
 import ProcessSteps from '../components/sections/ProcessSteps.astro';
 import Testimonials from '../components/sections/Testimonials.astro';
@@ -12,9 +13,7 @@ import FAQ from '../components/sections/FAQ.astro';
 import ContactForm from '../components/sections/ContactForm.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
 import ScrollTracker from '../components/sections/ScrollTracker.astro';
-
-// Hidden form copy for Netlify Forms detection (build-time scan).
-// Erstmaliges Posten kommt von ContactForm.astro via action="/danke".
+import FloatingContact from '../components/layout/FloatingContact.astro';
 ---
 <BaseLayout includeSchema={true}>
   <Header />
@@ -22,6 +21,7 @@ import ScrollTracker from '../components/sections/ScrollTracker.astro';
     <Hero />
     <TrustBar />
     <Services />
+    <Rechner />
     <WhyUs />
     <ProcessSteps />
     <Testimonials />
@@ -30,8 +30,10 @@ import ScrollTracker from '../components/sections/ScrollTracker.astro';
     <FinalCTA />
   </main>
   <Footer />
+  <FloatingContact />
   <ScrollTracker />
 
+  <!-- Hidden Netlify form detection (build-time scan). -->
   <form name="frankfurt-anfrage" data-netlify="true" data-netlify-honeypot="bot-field" hidden aria-hidden="true">
     <input type="text" name="name" />
     <input type="email" name="email" />
@@ -39,6 +41,20 @@ import ScrollTracker from '../components/sections/ScrollTracker.astro';
     <input type="text" name="leistung" />
     <input type="number" name="groesse" />
     <textarea name="nachricht"></textarea>
+    <input type="checkbox" name="datenschutz" />
+    <input type="text" name="source" />
+    <input type="text" name="bot-field" />
+  </form>
+
+  <form name="frankfurt-rechner" data-netlify="true" data-netlify-honeypot="bot-field" hidden aria-hidden="true">
+    <input type="text" name="name" />
+    <input type="email" name="email" />
+    <input type="tel" name="telefon" />
+    <input type="text" name="objekt" />
+    <input type="number" name="quadratmeter" />
+    <input type="number" name="raeume" />
+    <input type="number" name="sanitaer" />
+    <input type="text" name="intervall" />
     <input type="checkbox" name="datenschutz" />
     <input type="text" name="source" />
     <input type="text" name="bot-field" />
