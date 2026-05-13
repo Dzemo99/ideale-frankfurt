@@ -8,10 +8,17 @@ export interface Props {
 
 const { service } = Astro.props;
 ---
-<article class="group relative flex h-full flex-col rounded-lg border border-ig-line bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-hover md:p-7">
-  <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-md-tight bg-ig-fog text-ig-deep transition-colors group-hover:bg-ig-deep group-hover:text-white">
+<article class="group relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-ig-emerald/40 hover:bg-white/[0.06] md:p-7">
+  <div class="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] text-ig-emerald transition-all duration-300 group-hover:scale-110 group-hover:border-ig-emerald/40 group-hover:bg-ig-emerald/10">
     <ServiceIcon icon={service.icon} />
   </div>
-  <h3 class="h3-display mb-2 text-ig-ink">{service.title}</h3>
-  <p class="text-sm leading-relaxed text-ig-ink/70">{service.short}</p>
+  <h3 class="h3-display mb-2 text-white">{service.title}</h3>
+  <p class="text-sm leading-relaxed text-white/60">{service.short}</p>
+
+  <span aria-hidden="true" class="absolute right-5 top-5 text-white/20 transition-all duration-300 group-hover:translate-x-1 group-hover:text-ig-emerald">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12" />
+      <polyline points="12 5 19 12 12 19" />
+    </svg>
+  </span>
 </article>

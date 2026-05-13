@@ -41,11 +41,3 @@ const sizeClass = size === 'lg' ? 'px-8 py-4 text-lg' : '';
     )}
   </span>
 </a>
-
-<script>
-  document.querySelectorAll('a[data-track="phone_click"]').forEach((el) => {
-    el.addEventListener('click', () => {
-      import('../../lib/tracking').then((m) => m.trackPhoneClick());
-    });
-  });
-</script>

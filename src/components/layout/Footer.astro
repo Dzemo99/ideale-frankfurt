@@ -3,41 +3,41 @@ import { SITE } from '../../data/site';
 
 const year = new Date().getFullYear();
 ---
-<footer class="mt-auto border-t border-ig-line bg-ig-fog">
-  <div class="container-ig grid gap-10 py-14 md:grid-cols-3 md:py-16">
+<footer class="mt-auto border-t border-white/10 bg-ig-ink text-white on-dark">
+  <div class="container-ig grid gap-10 py-16 md:grid-cols-3 md:py-20">
     <div>
       <div class="flex items-center gap-3">
-        <img src="/images/logo.svg" alt="" width="36" height="36" class="h-9 w-9" />
-        <span class="font-display text-lg font-semibold text-ig-ink">{SITE.name}</span>
+        <img src="/images/logo.svg" alt="" width="36" height="36" class="h-9 w-9 brightness-0 invert" />
+        <span class="font-display text-lg font-bold text-white">{SITE.name}</span>
       </div>
-      <p class="mt-4 max-w-sm text-sm leading-relaxed text-ig-ink/70">
+      <p class="mt-4 max-w-sm text-sm leading-relaxed text-white/60">
         Etabliertes Familienunternehmen. Für den Großraum Frankfurt aus Göttingen — versichert, festgepreist, ohne Subunternehmer.
       </p>
     </div>
 
     <div>
-      <h4 class="font-display text-base font-semibold text-ig-ink">Kontakt</h4>
-      <ul class="mt-4 space-y-2 text-sm text-ig-ink/80">
+      <h4 class="font-display text-base font-semibold text-white">Kontakt</h4>
+      <ul class="mt-4 space-y-3 text-sm text-white/80">
         <li>
-          <a href={SITE.phoneLink} class="hover:text-ig-deep" data-track="phone_click">
-            <span class="block text-xs uppercase tracking-wider text-ig-ink/50">Telefon</span>
+          <a href={SITE.phoneLink} class="block hover:text-ig-emerald" data-track="phone_click">
+            <span class="block text-xs uppercase tracking-wider text-white/45">Telefon</span>
             <span class="font-mono">{SITE.phoneDisplay}</span>
           </a>
         </li>
         <li>
-          <a href={`mailto:${SITE.email}`} class="hover:text-ig-deep">
-            <span class="block text-xs uppercase tracking-wider text-ig-ink/50">E-Mail</span>
+          <a href={`mailto:${SITE.email}`} class="block hover:text-ig-emerald">
+            <span class="block text-xs uppercase tracking-wider text-white/45">E-Mail</span>
             {SITE.email}
           </a>
         </li>
         <li>
-          <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" class="hover:text-ig-deep" data-track="whatsapp_click">
-            <span class="block text-xs uppercase tracking-wider text-ig-ink/50">WhatsApp</span>
+          <a href={SITE.whatsappLink} target="_blank" rel="noopener noreferrer" class="block hover:text-ig-emerald" data-track="whatsapp_click">
+            <span class="block text-xs uppercase tracking-wider text-white/45">WhatsApp</span>
             {SITE.whatsappDisplay}
           </a>
         </li>
         <li class="pt-2">
-          <span class="block text-xs uppercase tracking-wider text-ig-ink/50">Anschrift</span>
+          <span class="block text-xs uppercase tracking-wider text-white/45">Anschrift</span>
           <address class="not-italic">
             {SITE.address.street}<br />
             {SITE.address.zip} {SITE.address.city}
@@ -47,16 +47,16 @@ const year = new Date().getFullYear();
     </div>
 
     <div>
-      <h4 class="font-display text-base font-semibold text-ig-ink">Rechtliches</h4>
-      <ul class="mt-4 space-y-2 text-sm text-ig-ink/80">
-        <li><a href="/impressum" class="hover:text-ig-deep">Impressum</a></li>
-        <li><a href="/datenschutz" class="hover:text-ig-deep">Datenschutz</a></li>
+      <h4 class="font-display text-base font-semibold text-white">Rechtliches</h4>
+      <ul class="mt-4 space-y-2 text-sm text-white/80">
+        <li><a href="/impressum" class="hover:text-ig-emerald">Impressum</a></li>
+        <li><a href="/datenschutz" class="hover:text-ig-emerald">Datenschutz</a></li>
         <li>
-          <button type="button" data-open-consent class="text-left hover:text-ig-deep">
+          <button type="button" data-open-consent class="text-left hover:text-ig-emerald">
             Cookie-Einstellungen
           </button>
         </li>
-        <li class="pt-2 text-xs text-ig-ink/60">
+        <li class="pt-2 text-xs text-white/45">
           USt-IdNr.: {SITE.ustId}<br />
           {SITE.insurance}
         </li>
@@ -64,8 +64,8 @@ const year = new Date().getFullYear();
     </div>
   </div>
 
-  <div class="border-t border-ig-line">
-    <div class="container-ig flex flex-col items-center justify-between gap-2 py-5 text-xs text-ig-ink/60 md:flex-row">
+  <div class="border-t border-white/10">
+    <div class="container-ig flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/45 md:flex-row">
       <span>© {year} {SITE.name} — Inh. {SITE.founder}. Alle Rechte vorbehalten.</span>
       <span>{SITE.serviceArea}</span>
     </div>

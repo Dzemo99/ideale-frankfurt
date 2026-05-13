@@ -1,6 +1,6 @@
 ---
 // TODO: Dzemo — echte Kundenstimmen einsetzen.
-// Bis dahin: anonymisierte Platzhalter (nicht erfunden — neutral formuliert).
+// Bis dahin: anonymisierte Platzhalter (neutral formuliert).
 // Wenn vor Go-Live keine echten Stimmen vorliegen → diese Section komplett entfernen.
 const quotes = [
   {
@@ -20,27 +20,29 @@ const quotes = [
   },
 ];
 ---
-<section class="section-pad bg-ig-ink text-white">
+<section class="relative isolate overflow-hidden bg-ig-ink py-24 text-white on-dark md:py-32">
+  <div aria-hidden="true" class="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+
   <div class="container-ig">
     <div class="mx-auto max-w-2xl text-center">
-      <span class="eyebrow text-ig-accent">Stimmen</span>
+      <span class="eyebrow">Stimmen</span>
       <h2 class="h2-display mt-4 text-white">
         Was unsere Kunden sagen.
       </h2>
     </div>
 
-    <div class="mt-14 grid gap-6 md:grid-cols-3">
+    <div class="mt-16 grid gap-5 md:grid-cols-3">
       {quotes.map((q) => (
-        <figure class="rounded-lg bg-white/5 p-7 ring-1 ring-white/10 backdrop-blur">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-ig-accent" aria-hidden="true">
+        <figure class="rounded-2xl border border-white/10 bg-white/[0.03] p-7 backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-ig-emerald/30 hover:bg-white/[0.05]">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="text-ig-emerald" aria-hidden="true">
             <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
           </svg>
-          <blockquote class="mt-4 text-base leading-relaxed text-white/90">
+          <blockquote class="mt-4 text-base leading-relaxed text-white/85">
             {q.body}
           </blockquote>
           <figcaption class="mt-5 border-t border-white/10 pt-4 text-sm">
-            <div class="font-semibold">{q.role}</div>
-            <div class="text-white/60">{q.location}</div>
+            <div class="font-semibold text-white">{q.role}</div>
+            <div class="text-white/55">{q.location}</div>
           </figcaption>
         </figure>
       ))}

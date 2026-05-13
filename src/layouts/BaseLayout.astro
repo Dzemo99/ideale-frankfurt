@@ -138,5 +138,21 @@ const faqSchema = {
     </a>
     <slot />
     <CookieBanner />
+
+    <script>
+      // Single delegated tracker for all data-track clicks across the page.
+      // Avoids duplicate handlers when multiple components register listeners.
+      document.addEventListener('click', (e) => {
+        const el = (e.target as HTMLElement | null)?.closest('[data-track]');
+        if (!el) return;
+        const kind = el.getAttribute('data-track');
+        if (!kind) return;
+        import('../lib/tracking').then((m) => {
+          if (kind === 'phone_click') m.trackPhoneClick();
+          else if (kind === 'whatsapp_click') m.trackWhatsAppClick();
+          else m.trackEvent(kind);
+        });
+      });
+    </script>
   </body>
 </html>

@@ -6,21 +6,21 @@ const steps = [
   { num: 4, title: 'Saubere Umsetzung', text: 'Termingerecht, gewissenhaft, dokumentiert. Mit demselben Team — Woche für Woche.' },
 ];
 ---
-<section class="section-pad">
+<section class="section-pad bg-white">
   <div class="container-ig">
     <div class="mx-auto max-w-2xl text-center">
       <span class="eyebrow">So läuft's ab</span>
-      <h2 class="h2-display mt-4 text-ig-ink">
+      <h2 class="h2-display mt-4 text-ig-dark">
         Vier Schritte zur sauberen Lösung.
       </h2>
     </div>
 
-    <div class="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+    <div class="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
       {steps.map((step) => (
-        <div class="relative rounded-lg border border-ig-line bg-white p-6 md:p-7">
-          <div class="font-display text-5xl font-semibold text-ig-accent">{String(step.num).padStart(2, '0')}</div>
-          <h3 class="mt-4 font-display text-xl font-semibold text-ig-ink">{step.title}</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ig-ink/70">{step.text}</p>
+        <div class="group relative rounded-2xl border border-ig-line bg-white p-7 transition-all duration-300 hover:-translate-y-1 hover:border-ig-emerald/40 hover:shadow-card-hover">
+          <div class="font-display text-5xl font-bold text-ig-emerald">{String(step.num).padStart(2, '0')}</div>
+          <h3 class="mt-4 font-display text-xl font-semibold text-ig-dark">{step.title}</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ig-muteLight">{step.text}</p>
         </div>
       ))}
     </div>

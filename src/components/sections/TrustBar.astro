@@ -1,38 +1,18 @@
 ---
 const trustItems = [
-  {
-    title: '5 Mio. EUR versichert',
-    text: 'Betriebshaftpflicht',
-    icon: 'shield',
-  },
-  {
-    title: 'Festpreise',
-    text: 'Keine versteckten Kosten',
-    icon: 'tag',
-  },
-  {
-    title: 'Schnelle Reaktion',
-    text: 'Anfrage am selben Tag',
-    icon: 'clock',
-  },
-  {
-    title: 'Eigenes Team',
-    text: 'Keine Subunternehmer',
-    icon: 'users',
-  },
-  {
-    title: 'Großraum Frankfurt',
-    text: 'Rhein-Main inkl. Umland',
-    icon: 'map',
-  },
+  { title: '5 Mio. EUR versichert', text: 'Betriebshaftpflicht', icon: 'shield' },
+  { title: 'Festpreise', text: 'Keine versteckten Kosten', icon: 'tag' },
+  { title: 'Schnelle Reaktion', text: 'Anfrage am selben Tag', icon: 'clock' },
+  { title: 'Eigenes Team', text: 'Keine Subunternehmer', icon: 'users' },
+  { title: 'Großraum Frankfurt', text: 'Rhein-Main inkl. Umland', icon: 'map' },
 ];
 ---
-<section class="border-y border-ig-line bg-white">
-  <div class="container-ig grid grid-cols-2 gap-y-8 py-10 sm:grid-cols-3 md:grid-cols-5 md:py-12">
+<section class="border-b border-ig-line bg-white">
+  <div class="container-ig grid grid-cols-2 gap-y-8 py-12 sm:grid-cols-3 md:grid-cols-5 md:py-14">
     {trustItems.map((item) => (
       <div class="flex items-start gap-3">
-        <div class="mt-0.5 text-ig-deep" aria-hidden="true">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <div class="mt-0.5 text-ig-emerald" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             {item.icon === 'shield' && <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />}
             {item.icon === 'tag' && (
               <>
@@ -64,8 +44,8 @@ const trustItems = [
           </svg>
         </div>
         <div>
-          <div class="text-sm font-semibold text-ig-ink">{item.title}</div>
-          <div class="text-xs text-ig-ink/60">{item.text}</div>
+          <div class="text-sm font-semibold text-ig-dark">{item.title}</div>
+          <div class="text-xs text-ig-muteLight">{item.text}</div>
         </div>
       </div>
     ))}

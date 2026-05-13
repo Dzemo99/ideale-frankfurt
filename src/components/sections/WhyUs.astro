@@ -23,14 +23,14 @@ const points = [
     <div class="grid items-start gap-14 md:grid-cols-2 md:gap-20">
       <div class="md:sticky md:top-28">
         <span class="eyebrow">Warum Ideale</span>
-        <h2 class="h2-display mt-4 text-ig-ink">
+        <h2 class="h2-display mt-4 text-ig-dark">
           Vier Gründe, warum Sie<br />
           mit uns ruhig schlafen.
         </h2>
         <p class="lead mt-5">
           Wir sind nicht der billigste Anbieter im Markt. Wir sind der, mit dem Sie aufhören, sich Sorgen um Reinigung zu machen.
         </p>
-        <div class="mt-8 aspect-[4/3] overflow-hidden rounded-lg bg-ig-deep shadow-card">
+        <div class="mt-8 aspect-[4/3] overflow-hidden rounded-2xl bg-ig-ink shadow-card">
           <img
             src="/images/team-1.svg"
             alt="Team von Ideale Gebäudereinigung bei der Arbeit"
@@ -46,11 +46,11 @@ const points = [
       <ol class="space-y-8">
         {points.map((p, i) => (
           <li class="relative pl-14">
-            <span class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-ig-ink font-display text-base font-semibold text-white">
+            <span class="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full bg-ig-ink font-display text-base font-bold text-ig-emerald">
               {String(i + 1).padStart(2, '0')}
             </span>
-            <h3 class="font-display text-xl font-semibold text-ig-ink md:text-2xl">{p.title}</h3>
-            <p class="mt-2 text-ig-ink/75">{p.text}</p>
+            <h3 class="font-display text-xl font-semibold text-ig-dark md:text-2xl">{p.title}</h3>
+            <p class="mt-2 text-ig-muteLight">{p.text}</p>
           </li>
         ))}
       </ol>

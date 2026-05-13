@@ -2,20 +2,22 @@
 import { SERVICES } from '../../data/services';
 import ServiceCard from '../ui/ServiceCard.astro';
 ---
-<section id="leistungen" class="section-pad">
+<section id="leistungen" class="relative isolate overflow-hidden bg-ig-ink py-24 text-white on-dark md:py-32">
+  <div aria-hidden="true" class="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
+
   <div class="container-ig">
     <div class="mx-auto max-w-2xl text-center">
       <span class="eyebrow">Unsere Leistungen</span>
-      <h2 class="h2-display mt-4 text-ig-ink">
+      <h2 class="h2-display mt-4 text-white">
         Alles, was Ihre Räume sauber hält.
       </h2>
-      <p class="lead mt-5">
+      <p class="lead-dark mt-5">
         Vom Schaufenster bis zur Industriehalle, vom Treppenhaus bis zum Wintergarten.
-        Sie finden Ihren Service nicht? <a href={'#kontakt'} class="underline decoration-ig-accent decoration-2 underline-offset-4 hover:text-ig-deep">Rufen Sie uns an</a> — wir reinigen mehr als hier aufgelistet.
+        Sie finden Ihren Service nicht? <a href="#kontakt" class="text-ig-emerald underline decoration-ig-emerald/40 underline-offset-4 hover:decoration-ig-emerald">Rufen Sie uns an</a> — wir reinigen mehr als hier aufgelistet.
       </p>
     </div>
 
-    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+    <div class="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {SERVICES.map((service) => (
         <ServiceCard service={service} />
       ))}
