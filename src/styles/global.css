@@ -1,4 +1,3 @@
-@import '@fontsource-variable/fraunces/wght.css';
 @import '@fontsource-variable/plus-jakarta-sans/wght.css';
 
 @tailwind base;
@@ -7,22 +6,29 @@
 
 @layer base {
   :root {
-    --ig-ink: #0b1b2b;
-    --ig-deep: #15324d;
+    --ig-ink: #0a0a0a;
+    --ig-deep: #111111;
+    --ig-surface: #171717;
+    --ig-fog: #f9fafb;
+    --ig-line: #e5e7eb;
+    --ig-line-dark: #262626;
+    --ig-mute: #a1a1aa;
+    --ig-mute-light: #52525b;
+    --ig-emerald: #10b981;
+    --ig-emerald-dark: #059669;
     --ig-accent: #c8a24b;
-    --ig-fog: #f5f2ec;
-    --ig-line: #e5dfd3;
-    --ig-success: #2f855a;
-    --ig-danger: #c53030;
+    --ig-success: #10b981;
+    --ig-danger: #dc2626;
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    background-color: #0a0a0a;
   }
 
   body {
-    @apply bg-white font-sans text-ig-ink antialiased;
+    @apply bg-white font-sans text-ig-dark antialiased;
     font-feature-settings: 'ss01', 'cv11';
   }
 
@@ -32,11 +38,15 @@
   }
 
   ::selection {
-    @apply bg-ig-deep text-white;
+    @apply bg-ig-emerald text-white;
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-ig-deep ring-offset-2 ring-offset-white;
+    @apply outline-none ring-2 ring-ig-emerald ring-offset-2 ring-offset-white;
+  }
+
+  .on-dark :focus-visible {
+    @apply ring-offset-ig-ink;
   }
 }
 
@@ -46,7 +56,7 @@
   }
 
   .section-pad {
-    @apply py-20 md:py-28;
+    @apply py-24 md:py-32;
   }
 
   .btn-base {
@@ -54,11 +64,15 @@
   }
 
   .btn-primary {
-    @apply btn-base bg-ig-ink text-white hover:bg-ig-deep hover:scale-[1.02] active:scale-[0.99];
+    @apply btn-base bg-ig-emerald text-white shadow-glow hover:bg-ig-emeraldDark hover:scale-[1.02] active:scale-[0.99];
   }
 
   .btn-secondary {
-    @apply btn-base border-2 border-ig-ink text-ig-ink hover:bg-ig-ink hover:text-white;
+    @apply btn-base border border-ig-line text-ig-dark hover:border-ig-ink hover:bg-ig-ink hover:text-white;
+  }
+
+  .btn-secondary-dark {
+    @apply btn-base border border-white/15 bg-white/[0.04] text-white backdrop-blur-sm hover:bg-white/10 hover:border-white/25;
   }
 
   .btn-whatsapp {
@@ -66,24 +80,97 @@
   }
 
   .eyebrow {
-    @apply text-sm font-semibold uppercase tracking-[0.18em] text-ig-deep;
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-ig-emerald;
+  }
+
+  .eyebrow-dark {
+    @apply text-xs font-semibold uppercase tracking-[0.22em] text-ig-emerald;
   }
 
   .h1-display {
     @apply font-display text-display-sm md:text-display-md lg:text-display-lg;
+    font-weight: 700;
   }
 
   .h2-display {
     @apply font-display text-3xl md:text-4xl lg:text-5xl;
+    font-weight: 700;
+    letter-spacing: -0.03em;
   }
 
   .h3-display {
     @apply font-display text-xl md:text-2xl;
+    font-weight: 600;
+    letter-spacing: -0.02em;
   }
 
   .lead {
-    @apply text-lg md:text-xl text-ig-ink/80 leading-relaxed;
+    @apply text-lg md:text-xl text-ig-muteLight leading-relaxed;
   }
+
+  .lead-dark {
+    @apply text-lg md:text-xl text-ig-mute leading-relaxed;
+  }
+
+  .input-base {
+    @apply w-full rounded-md-tight border-ig-line bg-white px-4 py-3.5 text-ig-dark placeholder:text-ig-mute focus:border-ig-emerald focus:ring-ig-emerald;
+  }
+
+  .input-glass {
+    @apply w-full rounded-md-tight border border-white/10 bg-white/[0.06] px-4 py-3.5 text-white placeholder:text-white/40 backdrop-blur-md focus:border-ig-emerald focus:bg-white/[0.08] focus:ring-2 focus:ring-ig-emerald/40 focus:outline-none transition-colors;
+  }
+}
+
+/* Stagger helper for entrance animations */
+.fx-stagger > * {
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.fx-stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.fx-stagger > *:nth-child(2) { animation-delay: 0.15s; }
+.fx-stagger > *:nth-child(3) { animation-delay: 0.25s; }
+.fx-stagger > *:nth-child(4) { animation-delay: 0.35s; }
+.fx-stagger > *:nth-child(5) { animation-delay: 0.45s; }
+.fx-stagger > *:nth-child(6) { animation-delay: 0.55s; }
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Native range slider – emerald accent */
+input[type='range'].slider-emerald {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+input[type='range'].slider-emerald::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #10b981;
+  border: 3px solid #0a0a0a;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.4), 0 6px 16px -4px rgba(16, 185, 129, 0.6);
+  transition: transform 0.15s ease;
+}
+input[type='range'].slider-emerald::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+input[type='range'].slider-emerald::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #10b981;
+  border: 3px solid #0a0a0a;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.4), 0 6px 16px -4px rgba(16, 185, 129, 0.6);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -93,4 +180,5 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .fx-stagger > * { opacity: 1; }
 }
