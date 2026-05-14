@@ -70,7 +70,7 @@ export default {
       },
       backgroundImage: {
         'mesh-hero':
-          'radial-gradient(ellipse 80% 50% at 20% 0%, rgba(16, 185, 129, 0.12), transparent 60%), radial-gradient(ellipse 60% 50% at 80% 100%, rgba(16, 185, 129, 0.08), transparent 60%), radial-gradient(ellipse 50% 40% at 50% 50%, rgba(200, 162, 75, 0.04), transparent 70%)',
+          'radial-gradient(ellipse 65% 55% at 22% 35%, rgba(16, 185, 129, 0.28), transparent 65%), radial-gradient(ellipse 55% 50% at 82% 75%, rgba(16, 185, 129, 0.18), transparent 65%), radial-gradient(ellipse 70% 50% at 50% 110%, rgba(200, 162, 75, 0.10), transparent 70%)',
         'mesh-rechner':
           'radial-gradient(ellipse 70% 60% at 80% 20%, rgba(16, 185, 129, 0.10), transparent 60%), radial-gradient(ellipse 60% 50% at 10% 90%, rgba(16, 185, 129, 0.06), transparent 60%)',
       },
