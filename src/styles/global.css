@@ -4,6 +4,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Houdini-Property für rotierenden Conic-Gradient (Glow-Border).
+   Top-level, weil @property nicht in @layer leben darf. */
+@property --glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes glow-rotate {
+  to {
+    --glow-angle: 360deg;
+  }
+}
+
 @layer base {
   :root {
     --ig-ink: #0a0a0a;
@@ -65,6 +79,8 @@
 
   .btn-primary {
     @apply btn-base bg-ig-emerald text-white shadow-glow hover:bg-ig-emeraldDark hover:scale-[1.02] active:scale-[0.99];
+    position: relative;
+    isolation: isolate;
   }
 
   .btn-secondary {
@@ -77,6 +93,57 @@
 
   .btn-whatsapp {
     @apply btn-base bg-[#25D366] text-white hover:bg-[#1FB855] hover:scale-[1.02] active:scale-[0.99];
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* Animierter Glow-Border auf den Haupt-Conversion-CTAs.
+     Erzeugt eine dünne, rotierende Lichtspur am Rand des Buttons.
+     `mask-composite: exclude` blendet den Inhalt aus und lässt nur den 1.5px-Rahmen sichtbar. */
+  .btn-primary::before,
+  .btn-whatsapp::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+    pointer-events: none;
+    z-index: 0;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    animation: glow-rotate 3.6s linear infinite;
+  }
+
+  .btn-primary::before {
+    background: conic-gradient(
+      from var(--glow-angle),
+      transparent 0deg,
+      transparent 210deg,
+      rgba(255, 255, 255, 0.85) 285deg,
+      rgba(52, 211, 153, 0.95) 325deg,
+      transparent 360deg
+    );
+  }
+
+  .btn-whatsapp::before {
+    background: conic-gradient(
+      from var(--glow-angle),
+      transparent 0deg,
+      transparent 210deg,
+      rgba(255, 255, 255, 0.9) 285deg,
+      rgba(37, 211, 102, 1) 325deg,
+      transparent 360deg
+    );
+  }
+
+  /* Button-Inhalt (Text/Icon) muss über dem ::before-Rahmen liegen */
+  .btn-primary > *,
+  .btn-whatsapp > * {
+    position: relative;
+    z-index: 1;
   }
 
   .eyebrow {
@@ -113,7 +180,7 @@
   }
 
   .input-base {
-    @apply w-full rounded-md-tight border-ig-line bg-white px-4 py-3.5 text-ig-dark placeholder:text-ig-mute focus:border-ig-emerald focus:ring-ig-emerald;
+    @apply w-full rounded-md-tight border border-ig-line bg-white px-4 py-3.5 text-ig-dark placeholder:text-ig-mute focus:border-ig-emerald focus:ring-ig-emerald;
   }
 
   .input-glass {
