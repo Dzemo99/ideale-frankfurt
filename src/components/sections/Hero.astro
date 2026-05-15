@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import { SITE } from '../../data/site';
+import heroTeam from '../../assets/images/hero-team.jpg';
 
 // Hero submits to the same Netlify form as the deep contact form (`frankfurt-anfrage`)
 // so leads land in one place. `source=hero` distinguishes origin in Netlify exports.
@@ -8,8 +10,22 @@ import { SITE } from '../../data/site';
   class="relative isolate overflow-hidden bg-ig-ink text-white on-dark"
   aria-labelledby="hero-headline"
 >
+  <!-- Team photo as hero background -->
+  <Image
+    src={heroTeam}
+    alt=""
+    role="presentation"
+    loading="eager"
+    fetchpriority="high"
+    widths={[768, 1280, 1920]}
+    sizes="100vw"
+    class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
+  />
+  <!-- Dark overlay to keep text readable -->
+  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-ig-ink/75"></div>
+
   <!-- Mesh / radial glow background -->
-  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-mesh-hero"></div>
+  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-mesh-hero opacity-80"></div>
 
   <!-- Subtle grid overlay for depth (very low opacity) -->
   <div aria-hidden="true" class="absolute inset-0 -z-10 opacity-[0.04]">

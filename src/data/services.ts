@@ -1,3 +1,7 @@
+import type { ImageMetadata } from 'astro';
+import fensterImage from '../assets/images/fenster-reinigung.jpg';
+import sanitaerImage from '../assets/images/sanitaer-reinigung.jpg';
+
 export type ServiceIcon =
   | 'window'
   | 'building'
@@ -17,13 +21,14 @@ export type Service = {
   title: string;
   short: string;
   icon: ServiceIcon;
+  image?: ImageMetadata;
 };
 
 export const SERVICES: readonly Service[] = [
-  { slug: 'glasreinigung',         title: 'Glasreinigung',         short: 'Streifenfreie Fenster & Glasfassaden',         icon: 'window' },
+  { slug: 'glasreinigung',         title: 'Glasreinigung',         short: 'Streifenfreie Fenster & Glasfassaden',         icon: 'window',  image: fensterImage },
   { slug: 'fassadenreinigung',     title: 'Fassadenreinigung',     short: 'Schonende Reinigung jeder Fassadenart',         icon: 'building' },
   { slug: 'bueroreinigung',        title: 'Büroreinigung',         short: 'Tägliche Unterhaltsreinigung für Unternehmen',   icon: 'briefcase' },
-  { slug: 'sanitaerreinigung',     title: 'Sanitärreinigung',      short: 'Hygienisch sauber bis ins Detail',               icon: 'droplet' },
+  { slug: 'sanitaerreinigung',     title: 'Sanitärreinigung',      short: 'Hygienisch sauber bis ins Detail',               icon: 'droplet', image: sanitaerImage },
   { slug: 'wintergartenreinigung', title: 'Wintergartenreinigung', short: 'Glasdächer & Wintergärten — auch von außen',     icon: 'sun' },
   { slug: 'bauendreinigung',       title: 'Bauendreinigung',       short: 'Übergabefertig nach Neubau & Sanierung',         icon: 'hammer' },
   { slug: 'treppenhausreinigung',  title: 'Treppenhausreinigung',  short: 'Regelmäßig sauber für WEG & Vermieter',          icon: 'stairs' },
