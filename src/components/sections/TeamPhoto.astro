@@ -1,18 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import heroTeam from '../../assets/images/hero-team.jpg';
 ---
 <section class="bg-ig-ink py-12 md:py-16" aria-label="Unser Team in Frankfurt">
   <div class="container-ig">
     <figure class="overflow-hidden rounded-2xl border border-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.7)] ring-1 ring-white/5">
-      <Image
-        src={heroTeam}
+      <img
+        src="/images/hero-team.jpg"
         alt="Team von Ideale Gebäudereinigung bei der Arbeit in Frankfurt"
         loading="lazy"
         decoding="async"
-        widths={[640, 960, 1280, 1600]}
-        sizes="(min-width: 1280px) 1136px, 100vw"
-        class="block aspect-[21/9] w-full object-cover md:aspect-[16/7]"
+        class="block w-full h-auto"
       />
     </figure>
   </div>
