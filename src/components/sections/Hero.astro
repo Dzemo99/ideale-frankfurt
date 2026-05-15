@@ -10,22 +10,8 @@ import heroTeam from '../../assets/images/hero-team.jpg';
   class="relative isolate overflow-hidden bg-ig-ink text-white on-dark"
   aria-labelledby="hero-headline"
 >
-  <!-- Team photo as hero background -->
-  <Image
-    src={heroTeam}
-    alt=""
-    role="presentation"
-    loading="eager"
-    fetchpriority="high"
-    widths={[768, 1280, 1920]}
-    sizes="100vw"
-    class="absolute inset-0 -z-20 h-full w-full object-cover object-center"
-  />
-  <!-- Dark overlay to keep text readable -->
-  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-ig-ink/75"></div>
-
   <!-- Mesh / radial glow background -->
-  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-mesh-hero opacity-80"></div>
+  <div aria-hidden="true" class="absolute inset-0 -z-10 bg-mesh-hero"></div>
 
   <!-- Subtle grid overlay for depth (very low opacity) -->
   <div aria-hidden="true" class="absolute inset-0 -z-10 opacity-[0.04]">
@@ -201,6 +187,18 @@ import heroTeam from '../../assets/images/hero-team.jpg';
           Keine Weitergabe an Dritte. Antwort in der Regel binnen 24 Std.
         </p>
       </form>
+
+      <figure class="relative mt-6 overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.6)] ring-1 ring-white/5">
+        <Image
+          src={heroTeam}
+          alt="Team von Ideale Gebäudereinigung bei der Arbeit in Frankfurt"
+          loading="eager"
+          fetchpriority="high"
+          widths={[480, 768, 1024]}
+          sizes="(min-width: 1024px) 45vw, 100vw"
+          class="block aspect-[16/10] w-full object-cover"
+        />
+      </figure>
     </div>
 
   </div>
